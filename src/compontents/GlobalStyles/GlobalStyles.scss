@@ -1,0 +1,231 @@
+@import 'normalize.css';
+
+:root {
+    --primary-color: #ec1f55;
+    --text-color: #333;
+}
+
+html {
+
+}
+
+body {
+  background-color: #f5f5f5;
+  background-image: url('../../data/image/anhchill.png');
+  background-size: cover;
+  background-position: left;
+  animation: mymove 150s infinite;
+}
+
+@keyframes mymove {
+    50% {background-position: right;}
+}
+
+
+.app {
+    position: relative;
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+.content {
+    width: 100%;
+}
+
+
+// Header
+.wrapper-header  {
+    position: fixed;
+    padding: 16px 16px 14px;
+    background-color: #fff;
+    top: 0;
+    width: 100%;
+    max-width: 480px;
+    border-bottom: 1px solid #ebebeb;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.title-header {
+    color: var(--primary-color);
+    font-size: 14px;
+}
+
+.title-header_song {
+    color: var(--text-color);
+    font-size: 20px;
+}
+
+.cd {
+    display: flex;
+    margin: auto;   
+    width: 200px;
+}
+
+.cd-thumb {
+    // background-image: url('../../../image/anh1.png');
+    padding-top: 100%;
+    width: 100%;
+    background-color: #333;
+    border-radius: 50%;
+    background-size: cover;
+    margin: auto;
+}
+
+// .img-cdthumb {
+//     width: 100%;
+//     height: 100%;
+//     border-radius: 50%;
+//     background-size: cover;
+//     margin: auto;
+// }
+
+
+//btn-control
+// .control {
+//     display: flex;
+//     align-items: center;
+//     justify-content: space-around;
+//     padding: 18px 0 8px 0;
+// }
+
+// .control .btn{
+//     color: #666;
+//     padding: 18px;
+//     font-size: 20px;
+//     cursor: pointer;
+// }
+
+// .control .btn.active {
+//     color: var(--primary-color);
+// }
+
+// .control .btn-toggle-play {
+//     width: 26px;
+//     height: 26px;
+//     border-radius: 50%;
+//     font-size: 24px;
+//     color: #fff;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     background-color: var(--primary-color);
+//   }
+
+
+// thanh chay
+.progress {
+    width: 100%;
+    height: 22px;
+    appearance: none;
+    outline: none;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+    // -webkit-transition: 0.2s;
+}
+
+.progress-bar {
+    width: 100%;
+    appearance: none;
+    cursor: pointer;
+    background: linear-gradient(to right, #ff2a5f 0%, #ccc 0%);
+    transition: background 450ms ease-in;
+    border-radius: 25px;
+    box-shadow: 2px 8px 13px -3px rgba(116, 114, 114, 0.75);
+}
+
+.progress-bar::-webkit-slider-thumb {
+    cursor: pointer;
+    appearance: none;
+    height: 24px;
+    width: 24px;
+    margin-top: -8px;
+    margin-bottom: -8px;
+    background-color: #ec1f55;
+    border-radius: 50%;
+    border: 4px solid rgb(255, 255, 255);
+    box-shadow: 2px 8px 13px -3px rgba(116, 114, 114, 0.75);
+  }
+
+
+// Container
+.wrapper-container {
+    margin-top: 440px;
+    padding: 16px;
+    width: 480px;
+}
+
+
+//Song
+// .wrapper-song {
+//     width: 480px;
+// }
+
+// .song {
+//     display: flex;
+//     align-items: center;
+//     background-color: #fff;
+//     margin-bottom: 12px;
+//     padding: 8px 16px;
+//     border-radius: 5px;
+//     box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+// }
+
+// .song.active {
+//     background-color: var(--primary-color);
+
+// }
+
+// .song.active .icon-option,
+// .song.active .author,
+// .song.active .title-song {
+//   color: #fff;
+// }
+
+
+
+// .thumb {
+//     // background-image: url('../../../image/anh1.png');
+//     width: 44px;
+//     height: 44px;
+//     border-radius: 50%;
+//     background-size: cover;
+//     margin: 0 8px;
+// }
+
+// .img {
+//     width: 100%;
+//     height: 100%;
+//     border-radius: 50%;
+//     background-size: cover;
+// }
+
+// .body {
+//     flex: 1;
+//     padding: 0 16px;
+// }
+
+// .title-song {
+//     color: var(--text-color);
+//     font-size: 18px;
+// }
+
+// .author {
+//     font-size: 15px;
+//     color: #999;
+// }
+
+// .song .option {
+// }
+
+// .icon-option {
+//     padding: 16px 8px;
+//     font-size: 25px;
+//     color: #999;
+// }
+
+
+
