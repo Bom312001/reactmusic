@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "./static/css/main.88c10cb6.css",
-    "main.js": "./static/js/main.b9bf170e.js",
+    "main.css": "./static/css/main.e018028e.css",
+    "main.js": "./static/js/main.e6b8341c.js",
     "static/js/787.5d86c2a1.chunk.js": "./static/js/787.5d86c2a1.chunk.js",
     "static/media/8Umbrella - Ember Island - Matte Remix (Lyrics + Vietsub) ♫.mp3": "./static/media/8Umbrella - Ember Island - Matte Remix (Lyrics + Vietsub) ♫.32f935556458a699a7a0.mp3",
     "static/media/5Eminem - Love The Way You Lie ft. Rihanna.mp3": "./static/media/5Eminem - Love The Way You Lie ft. Rihanna.ca782a51363504ff1e78.mp3",
@@ -14,12 +14,12 @@
     "static/media/4Austin Mahone - Send It ft. Rich Homie Quan (Lyric Video).mp3": "./static/media/4Austin Mahone - Send It ft. Rich Homie Quan (Lyric Video).44811139d41d9b399207.mp3",
     "static/media/anh1.png": "./static/media/anh1.6f13118ee09477d51d7b.png",
     "index.html": "./index.html",
-    "main.88c10cb6.css.map": "./static/css/main.88c10cb6.css.map",
-    "main.b9bf170e.js.map": "./static/js/main.b9bf170e.js.map",
+    "main.e018028e.css.map": "./static/css/main.e018028e.css.map",
+    "main.e6b8341c.js.map": "./static/js/main.e6b8341c.js.map",
     "787.5d86c2a1.chunk.js.map": "./static/js/787.5d86c2a1.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.88c10cb6.css",
-    "static/js/main.b9bf170e.js"
+    "static/css/main.e018028e.css",
+    "static/js/main.e6b8341c.js"
   ]
 }
