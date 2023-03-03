@@ -13,7 +13,7 @@ function* login(action) {
         const response = yield call(loginApi, action.payload);
 
         if (response.status === 200) {
-            localStorage.setItem('access_token', 'fake_token');
+            // localStorage.setItem('access_token', 'fake_token');
             yield put({ type: 'LOGIN_SUCCESS' });
         } else {
             yield put({ type: 'LOGIN_FAILURE', payload: 'Incorrect username or password' });

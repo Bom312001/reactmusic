@@ -1,7 +1,8 @@
 import classNames from 'classnames/bind';
 import styles from './compontents/GlobalStyles/GlobalStyles';
 // import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, Redirect, useHistory } from 'react-router-dom';
+import routes from './config/routes';
 
 // import {song} from '../src/data/dataSong/dataSong'
 // import {  useState, useRef, useEffect } from "react";
@@ -13,20 +14,36 @@ import Music from './compontents/Music/Music';
 import BtnLogIn from './btnLogIn/BtnLogIn';
 
 // import { loginApi } from './api/api';
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
 const cx = classNames.bind(styles);
 
 function App() {
+    const history = useHistory();
     // console.log(loginApi())
+
+    const loggedIn = useSelector((state) => state.loggedIn);
+    const username = localStorage.getItem('name'); // cách 2:  khi sd Rediret
+
+    useEffect(() => {
+        // const username = localStorage.getItem('name'); // cách 1 nếu ko dùng redirect ở dưới
+        // history là một đối tượng trong JavaScript được sử dụng để quản lý lịch sử của trình duyệt.
+        // push là để người dùng có thể quay lại trang trước khi đến
+        history.push(username ? `${routes.home}` : `${routes.login}`);
+    }, []);
+
+    if (!username) <Redirect exact to={routes.login} />; // cách 2:  khi sd Rediret
 
     return (
         <div className="app">
-            <Link to="/login">
-                <button className="app_btn-login">Login</button>
-            </Link>
+            {/* {loggedIn && <Music />}
+            {!loggedIn && <ModalLogin />} */}
+            <Route exact path={routes.home} component={Music} />
 
-            <Route path="/login" component={ModalLogin} />
-            <Route path="/music" component={Music} />
+            <Route exact path={routes.login} component={ModalLogin} />
+
+            {/* <Redirect from="*" to="/" /> */}
         </div>
     );
 }

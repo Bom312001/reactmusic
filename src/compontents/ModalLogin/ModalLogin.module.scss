@@ -1,4 +1,4 @@
-section{
+.container {
     position: fixed;
     z-index: 99;
     top: 0;
@@ -8,11 +8,12 @@ section{
     /* width: 100%;
     height: 100vh; */
     display: flex;
-    background-color: rgba(0,0,0,0.4);
+    // background-color: rgba(0,0,0,0.4);
+    background-color: #333;
     align-items: center;
 }
 
-section .noi-dung{
+.container__content {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,83 +21,77 @@ section .noi-dung{
     margin: 0 auto;
     width: 600px;
     height: 500px;
-    background-color: #FFF;
+    background-color: #fff;
     border-radius: 4px;
 }
 
-section .noi-dung .form{
+.box {
     position: relative;
     width: 50%;
-}
 
-section .noi-dung .close {
-    position: absolute;
-    top: -60px;
-    font-size: 20px;
-    right: -125px;
-    padding: 6px;
-    cursor: pointer;
-}
-
-section .noi-dung .close:hover {
-    // background-color: #f53677;
-}
-
-section .noi-dung .form h2{
-    color: #607d8b;
-    font-weight: 700;
-    font-size: 1.5em;
-    text-transform: uppercase;
-    margin-bottom: 20px;
-    /* border-bottom: 4px solid #ff4584; */
-    display: inline-block;
-    letter-spacing: 1px;
-}
-section .noi-dung .form .input-form{
-    margin-bottom: 20px;
-}
-section .noi-dung .form .input-form span{
-    font-size: 16px;
-    margin-bottom: 5px;
-    display: inline-block;
-    color: #607db8;
-    letter-spacing: 1px;
-     }
-section .noi-dung .form .input-form input{
-    width: 100%;
-    padding: 10px 20px;
-    outline: none;
-    border: 1px solid #607d8b;
-    font-size: 16px;
-    letter-spacing: 1px;
-    color: #607d8b;
-    background: transparent;
-    border-radius: 30px;
+    &__close {
+        position: absolute;
+        top: -60px;
+        font-size: 20px;
+        right: -125px;
+        padding: 6px;
+        cursor: pointer;
     }
-section .noi-dung .form .input-form input[type="submit"]{
+
+    &__title {
+        color: #607d8b;
+        font-weight: 700;
+        font-size: 1.5em;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+        /* border-bottom: 4px solid #ff4584; */
+        display: inline-block;
+        letter-spacing: 1px;
+    }
+}
+
+.form__input {
+    margin-bottom: 20px;
+    &__text {
+        font-size: 16px;
+        margin-bottom: 5px;
+        display: inline-block;
+        color: #607db8;
+        letter-spacing: 1px;
+    }
+
+    &__userpass {
+        width: 100%;
+        padding: 10px 20px;
+        outline: none;
+        border: 1px solid #607d8b;
+        font-size: 16px;
+        letter-spacing: 1px;
+        color: #607d8b;
+        background: transparent;
+        border-radius: 30px;
+    }
+
+    &__register {
+        color: #607d8b;
+    }
+}
+
+.form__input__userpass[type='submit'] {
     background: #ff4584;
     color: #fff;
     outline: none;
     border: none;
     font-weight: 500;
     cursor: pointer;
-    box-shadow: 0 1px 1px rgba(0,0,0,0.12),
-               0 2px 2px rgba(0,0,0,0.12),
-               0 4px 4px rgba(0,0,0,0.12),
-              0 8px 8px rgba(0,0,0,0.12),
-              0 16px 16px rgba(0,0,0,0.12);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12), 0 4px 4px rgba(0, 0, 0, 0.12),
+        0 8px 8px rgba(0, 0, 0, 0.12), 0 16px 16px rgba(0, 0, 0, 0.12);
 }
-section .noi-dung .form .input-form input[type="submit"]:hover{
+.form__input__userpass[type='submit']:hover {
     background: #f53677;
 }
-section .noi-dung .form .nho-dang-nhap{
+.form__remember {
     margin-bottom: 10px;
     color: #607d8b;
     font-size: 14px;
-}
-section .noi-dung .form .input-form p{
-    color: #607d8b;
-}
-section .noi-dung .form .input-form p a{
-    color: #ff4584;
 }

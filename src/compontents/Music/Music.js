@@ -1,8 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
-import { useSelector } from 'react-redux';
-
-import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { Redirect, useHistory } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
 
 import classNames from 'classnames/bind';
 import styles from './Music.module.scss';
@@ -11,27 +10,38 @@ import { song } from '../../data/dataSong/dataSong';
 import SongItem from './SongItem/SongItem';
 import ControlMusic from './ControlMusic/ControlMusic';
 import { login } from '../../actions/actions';
+import ModalLogin from '../ModalLogin/ModalLogin';
+import routes from '../../config/routes';
 
 const cx = classNames.bind(styles);
 
 function Music() {
-    //ve redux
+    ////ve redux
     const loggedIn = useSelector((state) => state.loggedIn);
 
+    const btnLogoutRef = useRef();
+
+    //xét để khi từ trang app gõ /music cũng có thể đến luôn page music đc
     const dispatch = useDispatch();
     const history = useHistory();
 
-    useEffect(() => {
-        const username = localStorage.getItem('name');
-        const password = localStorage.getItem('pass');
+    // useEffect(() => {
+    //     const username = localStorage.getItem('name');
 
-        if (username) {
-            dispatch(login({ username, password }));
-            // chuyen den trang music
-            history.push('/music');
-        }
-    }, []);
+    //     if (username) {
+    //         dispatch(login({ username }));
+    //         // chuyen den trang music
+    //         history.push('/');
+    //     }
+    // }, []);
 
+    const handleRemoveLocal = () => {
+        localStorage.removeItem('name');
+
+        history.push(`${routes.login}`);
+    };
+
+    /////====phần UI ko
     const [audioIndex, setAudioIndex] = useState(0); // curentIndex
     const [isPlaying, setIsPlaying] = useState(false);
     // useRef
@@ -42,6 +52,7 @@ function Music() {
     const cdThumbAnimateRef = useRef(); // lưu trữ trạng thái của cd animate
 
     console.log(audioRef.current);
+    console.log(cdRef);
 
     // Get current song and set path for audio
     const currentSong = song[audioIndex];
@@ -56,6 +67,9 @@ function Music() {
 
     ////
     useEffect(() => {
+        // const username = localStorage.getItem('name');
+        // const password = localStorage.getItem('pass');
+        // if (username && password) {
         if (!isPlaying) {
             audioRef?.current?.pause();
             cdThumbAnimateRef?.current?.pause();
@@ -63,6 +77,9 @@ function Music() {
             audioRef.current?.play();
             cdThumbAnimateRef?.current?.play();
         }
+        // } else {
+        //     alert('Hay dang nhap');
+        // }
     });
 
     // xử lý scroll
@@ -80,7 +97,7 @@ function Music() {
         window.addEventListener('scroll', handleScroll);
 
         return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+    }, [loggedIn]);
 
     // xử lý tua
     const handleSeekTime = (e) => {
@@ -99,74 +116,74 @@ function Music() {
     };
 
     return (
-        <div>
-            {loggedIn && (
-                <div className="wrapper">
-                    {/* Header */}
-                    <div className={cx('wrapper-header')}>
-                        <header className={cx('header')}>
-                            <h4 className={cx('title-header')}>Now playing:</h4>
-                            <h2 className={cx('title-header_song')}>{currentSong.name}</h2>
-                        </header>
-                        <div className={cx('cd')} ref={cdRef}>
-                            <div
-                                className={cx('cd-thumb')}
-                                ref={cdThumbRef}
-                                style={{ backgroundImage: `url('${currentSong.image}')` }}
-                            ></div>
-                        </div>
+        <div className="wrapper">
+            {/* Header */}
+            <div className={cx('wrapper__header')}>
+                <header className={cx('header')}>
+                    <h4 className={cx('header__title')}>Now playing:</h4>
+                    <h2 className={cx('header__song')}>{currentSong.name}</h2>
+                </header>
+                <div className={cx('cd')} ref={cdRef}>
+                    <div
+                        className={cx('cd__thumb')}
+                        ref={cdThumbRef}
+                        style={{ backgroundImage: `url('${currentSong.image}')` }}
+                    ></div>
+                </div>
 
-                        {/* audio */}
-                        <audio
-                            id="audio"
-                            ref={audioRef}
-                            src={currentSong.path}
-                            onTimeUpdate={handleTimeUpdate} // theo dõi thanh progressbar chạy
-                        ></audio>
-                        {console.log(audioRef)}
+                <button className={cx('btn-logout')} ref={btnLogoutRef} onClick={handleRemoveLocal}>
+                    {/* <Redirect push to="/login" /> */}
+                    Logout
+                </button>
 
-                        {/* Music control */}
-                        <ControlMusic
-                            song={song}
-                            currentSong={currentSong}
-                            audioCurrent={audioRef.current}
-                            isPlaying={isPlaying}
-                            setIsPlaying={setIsPlaying}
-                            setAudioIndex={setAudioIndex}
-                        />
-                        <div className={cx('progress')}>
-                            <input
-                                ref={progressBarRef}
-                                className={cx('progress-bar')}
-                                type="range"
-                                value="0"
-                                step="1"
-                                min="0"
-                                max="100"
-                                onInput={handleSeekTime}
+                {/* audio */}
+                <audio
+                    id="audio"
+                    ref={audioRef}
+                    src={currentSong.path}
+                    onTimeUpdate={handleTimeUpdate} // theo dõi thanh progressbar chạy
+                ></audio>
+                {console.log(audioRef)}
+
+                {/* Music control */}
+                <ControlMusic
+                    song={song}
+                    currentSong={currentSong}
+                    audioCurrent={audioRef.current}
+                    isPlaying={isPlaying}
+                    setIsPlaying={setIsPlaying}
+                    setAudioIndex={setAudioIndex}
+                />
+                <div className={cx('progress')}>
+                    <input
+                        ref={progressBarRef}
+                        className={cx('progress__bar')}
+                        type="range"
+                        value="0"
+                        step="1"
+                        min="0"
+                        max="100"
+                        onInput={handleSeekTime}
+                    />
+                </div>
+            </div>
+
+            {/* Song list */}
+            <div className="wrapper__content">
+                <div className={cx('wrapper__content-container')}>
+                    <div className={cx('wrapper__content-container-song ')}>
+                        {song.map((songItem, index) => (
+                            <SongItem
+                                key={index}
+                                index={index}
+                                currentIndex={audioIndex}
+                                listSong={songItem}
+                                handleClick={() => setAudioIndex(index)}
                             />
-                        </div>
-                    </div>
-
-                    {/* Song list */}
-                    <div className="content">
-                        <div className={cx('wrapper-container')}>
-                            <div className={cx('wrapper-song ')}>
-                                {song.map((songItem, index) => (
-                                    <SongItem
-                                        key={index}
-                                        index={index}
-                                        currentIndex={audioIndex}
-                                        listSong={songItem}
-                                        handleClick={() => setAudioIndex(index)}
-                                    />
-                                ))}
-                            </div>
-                        </div>
+                        ))}
                     </div>
                 </div>
-            )}
-            {!loggedIn && <div>Please login music player</div>}
+            </div>
         </div>
     );
 }

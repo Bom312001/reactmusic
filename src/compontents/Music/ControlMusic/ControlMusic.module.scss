@@ -4,27 +4,27 @@
     align-items: center;
     justify-content: space-around;
     padding: 18px 0 8px 0;
+
+    &__btn {
+        color: #666;
+        padding: 18px;
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+    &__toggle-play {
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        font-size: 24px;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--primary-color);
+    }
 }
 
-.control .btn{
-    color: #666;
-    padding: 18px;
-    font-size: 20px;
-    cursor: pointer;
-}
-
-.control .btn.active {
+.active {
     color: var(--primary-color);
 }
-
-.control .btn-toggle-play {
-    width: 26px;
-    height: 26px;
-    border-radius: 50%;
-    font-size: 24px;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--primary-color);
-  }

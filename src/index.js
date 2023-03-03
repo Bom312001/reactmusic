@@ -29,7 +29,7 @@ root.render(
                 </Switch>
             </Router> */}
             <Router>
-                <App />,
+                <App />
             </Router>
         </Provider>
     </GlobalStyles>,

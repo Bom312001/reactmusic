@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+// import { useSelector } from 'react-redux';
 
 import classNames from 'classnames/bind';
 import styles from './ControlMusic.module.scss';
@@ -8,6 +9,9 @@ import { faPause, faPlay, faRandom, faRedo, faStepBackward, faStepForward } from
 const cx = classNames.bind(styles);
 
 function ControlMusic({ song, isPlaying, setIsPlaying, audioCurrent, setAudioIndex }) {
+    ////ve redux
+    // const loggedIn = useSelector((state) => state.loggedIn);
+
     const storageRandom = JSON.parse(localStorage.getItem('isRandom'));
     const storageRepeat = JSON.parse(localStorage.getItem('isRepeat'));
 
@@ -52,7 +56,11 @@ function ControlMusic({ song, isPlaying, setIsPlaying, audioCurrent, setAudioInd
 
     // // xử lý nút btn
     const togglePlay = () => {
+        // if (loggedIn) {
         setIsPlaying(!isPlaying);
+        // } else {
+        //     alert('Hay ndang nhap');
+        // }
     };
 
     const handleNext = () => {
@@ -84,7 +92,7 @@ function ControlMusic({ song, isPlaying, setIsPlaying, audioCurrent, setAudioInd
         <div>
             <div className={cx('control')}>
                 <div
-                    className={cx('btn', { active: isRepeat === true })}
+                    className={cx('control__btn', { active: isRepeat === true })}
                     onClick={() => {
                         setIsRepeat(!isRepeat);
                         JSON.stringify(localStorage.setItem('isRepeat', !isRepeat));
@@ -92,21 +100,21 @@ function ControlMusic({ song, isPlaying, setIsPlaying, audioCurrent, setAudioInd
                 >
                     <FontAwesomeIcon className={cx('btn-icon')} icon={faRedo} />
                 </div>
-                <div className={cx('btn')}>
+                <div className={cx('control__btn')}>
                     <FontAwesomeIcon className={cx('btn-icon')} icon={faStepBackward} onClick={handlePrev} />
                 </div>
-                <div className={cx('btn', 'btn-toggle-play')} onClick={togglePlay}>
+                <div className={cx('control__btn', 'control__toggle-play')} onClick={togglePlay}>
                     {isPlaying ? (
                         <FontAwesomeIcon className={cx('btn-icon')} icon={faPause} />
                     ) : (
                         <FontAwesomeIcon className={cx('btn-icon btn-toggle')} icon={faPlay} />
                     )}
                 </div>
-                <div className={cx('btn')}>
+                <div className={cx('control__btn')}>
                     <FontAwesomeIcon className={cx('btn-icon')} icon={faStepForward} onClick={handleNext} />
                 </div>
                 <div
-                    className={cx('btn', { active: isRandom === true })}
+                    className={cx('control__btn', { active: isRandom === true })}
                     onClick={() => {
                         setIsRanDom(!isRandom);
                         JSON.stringify(localStorage.setItem('isRandom', !isRandom));
