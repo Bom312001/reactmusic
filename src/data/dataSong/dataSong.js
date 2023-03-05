@@ -1,11 +1,9 @@
-
-
 const song = [
     {
         name: 'Head In The Clouds',
         singer: 'Hayd',
         path: require('../../data/listmusic/1[ Vietsub + Lyric ] Hayd - Head In The Clouds.mp3'),
-        image: require('../image/anh1.png'),
+        image: require('../image/anh1.jpg'),
     },
     {
         name: 'I Love 3000',
@@ -55,7 +53,15 @@ const song = [
         path: require('../../data/listmusic/9Vicetone - Nevada (ft. Cozi Zuehlsdorff).mp3'),
         image: require('../image/anh9.png'),
     },
-    
+    // {
+    //     name: 'Nevada',
+    //     singer: 'Vicetone',
+    //     path: require('../../data/listmusic/9Vicetone - Nevada (ft. Cozi Zuehlsdorff).mp3'),
+    //     image: require('../image/anh9.png'),
+    // },
 ];
 
-export {song}
+// localStorage.setItem('songs', JSON.stringify(song));
+// const song = JSON.parse(localStorage.getItem('songs'));
+
+export { song };

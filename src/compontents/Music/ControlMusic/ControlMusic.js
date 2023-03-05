@@ -15,12 +15,12 @@ function ControlMusic({ song, isPlaying, setIsPlaying, audioCurrent, setAudioInd
     const storageRandom = JSON.parse(localStorage.getItem('isRandom'));
     const storageRepeat = JSON.parse(localStorage.getItem('isRepeat'));
 
-    console.log(storageRandom);
+    // console.log(storageRandom);
 
     const [isRandom, setIsRanDom] = useState(storageRandom ?? false);
     const [isRepeat, setIsRepeat] = useState(storageRepeat ?? false);
 
-    console.log(isRandom);
+    // console.log(isRandom);
 
     // next song khi hat xong kết hợp với repeat
     useEffect(() => {

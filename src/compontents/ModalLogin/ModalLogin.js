@@ -50,7 +50,7 @@ function ModalLogin() {
                     <div className={cx('box')}>
                         <span className={cx('box__close')}>
                             {/* x */}
-                            <Link to="/">X</Link>
+                            <Link to={routes.home}>X</Link>
                         </span>
                         <h2 className={cx('box__title')}>Log In</h2>
                         <form className={cx('form')} action="" onSubmit={handleLogin}>

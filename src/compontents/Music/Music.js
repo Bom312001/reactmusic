@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Redirect, useHistory } from 'react-router-dom';
-import { Link, Route } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import classNames from 'classnames/bind';
 import styles from './Music.module.scss';
@@ -9,31 +9,25 @@ import styles from './Music.module.scss';
 import { song } from '../../data/dataSong/dataSong';
 import SongItem from './SongItem/SongItem';
 import ControlMusic from './ControlMusic/ControlMusic';
-import { login } from '../../actions/actions';
-import ModalLogin from '../ModalLogin/ModalLogin';
+// import { login } from '../../actions/actions';
 import routes from '../../config/routes';
+import useLocalStorage from '../../useLocalStorage/useLocalStorage';
 
 const cx = classNames.bind(styles);
 
 function Music() {
+    const { getStorage, setStorage } = useLocalStorage();
+
+    const songs = getStorage('listSong') || setStorage('listSong', song);
+
     ////ve redux
     const loggedIn = useSelector((state) => state.loggedIn);
 
     const btnLogoutRef = useRef();
 
     //xét để khi từ trang app gõ /music cũng có thể đến luôn page music đc
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
     const history = useHistory();
-
-    // useEffect(() => {
-    //     const username = localStorage.getItem('name');
-
-    //     if (username) {
-    //         dispatch(login({ username }));
-    //         // chuyen den trang music
-    //         history.push('/');
-    //     }
-    // }, []);
 
     const handleRemoveLocal = () => {
         localStorage.removeItem('name');
@@ -51,8 +45,8 @@ function Music() {
     const progressBarRef = useRef();
     const cdThumbAnimateRef = useRef(); // lưu trữ trạng thái của cd animate
 
-    console.log(audioRef.current);
-    console.log(cdRef);
+    // console.log(audioRef.current);
+    // console.log(cdRef);
 
     // Get current song and set path for audio
     const currentSong = song[audioIndex];
@@ -67,9 +61,6 @@ function Music() {
 
     ////
     useEffect(() => {
-        // const username = localStorage.getItem('name');
-        // const password = localStorage.getItem('pass');
-        // if (username && password) {
         if (!isPlaying) {
             audioRef?.current?.pause();
             cdThumbAnimateRef?.current?.pause();
@@ -77,9 +68,6 @@ function Music() {
             audioRef.current?.play();
             cdThumbAnimateRef?.current?.play();
         }
-        // } else {
-        //     alert('Hay dang nhap');
-        // }
     });
 
     // xử lý scroll
@@ -136,6 +124,12 @@ function Music() {
                     Logout
                 </button>
 
+                <button className={cx('btn-upload')}>
+                    <Link className={cx('btn-upload__link')} to={routes.upload}>
+                        UpLoad
+                    </Link>
+                </button>
+
                 {/* audio */}
                 <audio
                     id="audio"
@@ -143,7 +137,7 @@ function Music() {
                     src={currentSong.path}
                     onTimeUpdate={handleTimeUpdate} // theo dõi thanh progressbar chạy
                 ></audio>
-                {console.log(audioRef)}
+                {/* {console.log(audioRef)} */}
 
                 {/* Music control */}
                 <ControlMusic
@@ -172,7 +166,7 @@ function Music() {
             <div className="wrapper__content">
                 <div className={cx('wrapper__content-container')}>
                     <div className={cx('wrapper__content-container-song ')}>
-                        {song.map((songItem, index) => (
+                        {songs.map((songItem, index) => (
                             <SongItem
                                 key={index}
                                 index={index}
