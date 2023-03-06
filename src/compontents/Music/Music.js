@@ -65,7 +65,7 @@ function Music() {
             audioRef?.current?.pause();
             cdThumbAnimateRef?.current?.pause();
         } else {
-            audioRef.current?.play();
+            audioRef?.current?.play();
             cdThumbAnimateRef?.current?.play();
         }
     });
