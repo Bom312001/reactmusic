@@ -18,6 +18,7 @@ const cx = classNames.bind(styles);
 function Music() {
     const { getStorage, setStorage } = useLocalStorage();
 
+    // ban đầu lưu dữ liệu vào Storage
     const songs = getStorage('listSong') || setStorage('listSong', song);
 
     ////ve redux
