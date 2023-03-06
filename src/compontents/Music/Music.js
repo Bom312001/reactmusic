@@ -49,7 +49,7 @@ function Music() {
     // console.log(cdRef);
 
     // Get current song and set path for audio
-    const currentSong = song[audioIndex];
+    const currentSong = songs[audioIndex];
 
     // xử lý thumb quay
     useEffect(() => {
@@ -141,7 +141,7 @@ function Music() {
 
                 {/* Music control */}
                 <ControlMusic
-                    song={song}
+                    song={songs}
                     currentSong={currentSong}
                     audioCurrent={audioRef.current}
                     isPlaying={isPlaying}

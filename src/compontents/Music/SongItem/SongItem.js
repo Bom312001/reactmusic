@@ -1,5 +1,4 @@
 import { useEffect, useRef } from 'react';
-import { useHistory } from 'react-router-dom';
 
 import classNames from 'classnames/bind';
 import styles from './SongItem.module.scss';
@@ -11,8 +10,6 @@ import { Link } from 'react-router-dom';
 const cx = classNames.bind(styles);
 
 function SongItem({ index, currentIndex, listSong, handleClick }) {
-    const history = useHistory();
-
     const itemRef = useRef();
     useEffect(() => {
         if (index === currentIndex) {
