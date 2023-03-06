@@ -63,10 +63,10 @@ function Music() {
     ////
     useEffect(() => {
         if (!isPlaying) {
-            audioRef?.current?.pause();
+            audioRef.current?.pause();
             cdThumbAnimateRef?.current?.pause();
         } else {
-            audioRef?.current?.play();
+            audioRef.current?.play();
             cdThumbAnimateRef?.current?.play();
         }
     });
