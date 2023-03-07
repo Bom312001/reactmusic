@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "./static/css/main.7f540412.css",
-    "main.js": "./static/js/main.91157725.js",
+    "main.css": "./static/css/main.31c550b3.css",
+    "main.js": "./static/js/main.6d8a0970.js",
     "static/js/787.5d86c2a1.chunk.js": "./static/js/787.5d86c2a1.chunk.js",
     "static/media/8Umbrella - Ember Island - Matte Remix (Lyrics + Vietsub) ♫.mp3": "./static/media/8Umbrella - Ember Island - Matte Remix (Lyrics + Vietsub) ♫.32f935556458a699a7a0.mp3",
     "static/media/5Eminem - Love The Way You Lie ft. Rihanna.mp3": "./static/media/5Eminem - Love The Way You Lie ft. Rihanna.ca782a51363504ff1e78.mp3",
@@ -15,12 +15,12 @@
     "static/media/anhchill.png": "./static/media/anhchill.b60a1257f7b54b2d95d1.png",
     "static/media/anh1.jpg": "./static/media/anh1.8eb9407bac27d4ab7f0e.jpg",
     "index.html": "./index.html",
-    "main.7f540412.css.map": "./static/css/main.7f540412.css.map",
-    "main.91157725.js.map": "./static/js/main.91157725.js.map",
+    "main.31c550b3.css.map": "./static/css/main.31c550b3.css.map",
+    "main.6d8a0970.js.map": "./static/js/main.6d8a0970.js.map",
     "787.5d86c2a1.chunk.js.map": "./static/js/787.5d86c2a1.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.7f540412.css",
-    "static/js/main.91157725.js"
+    "static/css/main.31c550b3.css",
+    "static/js/main.6d8a0970.js"
   ]
 }
