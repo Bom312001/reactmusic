@@ -22,11 +22,16 @@
 
     &__input {
         width: 100%;
-        margin-bottom: 12px;
+        margin: 4px 0;
         padding: 8px 4px;
         border-radius: 2px;
         border: 1px solid #ccc;
         outline: none;
+    }
+
+    &__errors {
+        margin-bottom: 12px;
+        color: var(--primary-color);
     }
 }
 

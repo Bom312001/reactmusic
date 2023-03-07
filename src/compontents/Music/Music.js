@@ -19,12 +19,11 @@ function Music() {
     const { getStorage, setStorage } = useLocalStorage();
 
     // ban đầu lưu dữ liệu vào Storage
-    const songs = getStorage('listSong') || setStorage('listSong', song);
+    // const songs = getStorage('listSong') || setStorage('listSong', song);
+    const [songs, setSongs] = useState(getStorage('listSong') || setStorage('listSong', song)); // cho thử vào state
 
     ////ve redux
     const loggedIn = useSelector((state) => state.loggedIn);
-
-    const btnLogoutRef = useRef();
 
     //xét để khi từ trang app gõ /music cũng có thể đến luôn page music đc
     // const dispatch = useDispatch();
@@ -34,6 +33,15 @@ function Music() {
         localStorage.removeItem('name');
 
         history.push(`${routes.login}`);
+    };
+
+    // xóa song
+    const handleDeleteSong = (index) => {
+        console.log(index);
+        const newListSong = songs.filter((song, i) => i !== index);
+        setSongs(newListSong);
+        setStorage('listSong', newListSong);
+        alert('Delete thanh cong');
     };
 
     /////====phần UI ko
@@ -106,21 +114,21 @@ function Music() {
 
     return (
         <div className="wrapper">
-            {/* Header */}
+            {/* Header  currentSong?.name tìm thấy khi xóa bài cuối cùng thì bị lỗi mất giao diện */}
             <div className={cx('wrapper__header')}>
                 <header className={cx('header')}>
                     <h4 className={cx('header__title')}>Now playing:</h4>
-                    <h2 className={cx('header__song')}>{currentSong.name}</h2>
+                    <h2 className={cx('header__song')}>{currentSong?.name}</h2>
                 </header>
                 <div className={cx('cd')} ref={cdRef}>
                     <div
                         className={cx('cd__thumb')}
                         ref={cdThumbRef}
-                        style={{ backgroundImage: `url('${currentSong.image}')` }}
+                        style={{ backgroundImage: `url('${currentSong?.image}')` }}
                     ></div>
                 </div>
 
-                <button className={cx('btn-logout')} ref={btnLogoutRef} onClick={handleRemoveLocal}>
+                <button className={cx('btn-logout')} onClick={handleRemoveLocal}>
                     {/* <Redirect push to="/login" /> */}
                     Logout
                 </button>
@@ -135,7 +143,7 @@ function Music() {
                 <audio
                     id="audio"
                     ref={audioRef}
-                    src={currentSong.path}
+                    src={currentSong?.path}
                     onTimeUpdate={handleTimeUpdate} // theo dõi thanh progressbar chạy
                 ></audio>
                 {/* {console.log(audioRef)} */}
@@ -174,6 +182,7 @@ function Music() {
                                 currentIndex={audioIndex}
                                 listSong={songItem}
                                 handleClick={() => setAudioIndex(index)}
+                                onDelete={() => handleDeleteSong(index)}
                             />
                         ))}
                     </div>

@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
-function SongItem({ index, currentIndex, listSong, handleClick }) {
+function SongItem({ index, currentIndex, listSong, handleClick, onDelete }) {
     const itemRef = useRef();
     useEffect(() => {
         if (index === currentIndex) {
@@ -20,6 +20,11 @@ function SongItem({ index, currentIndex, listSong, handleClick }) {
             });
         }
     }, [index, currentIndex]);
+
+    const handleDelete = () => {
+        onDelete(index);
+        console.log(index);
+    };
 
     return (
         <div className={cx('wrapper-song')}>
@@ -37,6 +42,9 @@ function SongItem({ index, currentIndex, listSong, handleClick }) {
                         <Link className={cx('song__box__item')} to={routes.edit + '/' + index}>
                             Edit
                         </Link>
+                        <button className={cx('song__box__item')} onClick={handleDelete}>
+                            Delete
+                        </button>
                     </div>
                 </div>
             </div>

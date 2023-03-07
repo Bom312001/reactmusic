@@ -1,5 +1,7 @@
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { useForm } from 'react-hook-form';
+
 import { login } from '../../actions/actions';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -12,6 +14,12 @@ import styles from './ModalLogin.module.scss';
 const cx = classNames.bind(styles);
 
 function ModalLogin() {
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm();
+
     const dispatch = useDispatch();
     const error = useSelector((state) => state.error);
     const history = useHistory();
@@ -27,21 +35,27 @@ function ModalLogin() {
     //     }
     // }, []);
 
-    const handleLogin = (e) => {
-        e.preventDefault();
-        dispatch(login({ username, password }));
+    // const handleLogin = (e) => {
+    //     e.preventDefault();
+    //     dispatch(login({ username, password }));
+    //     // chuyen den trang music
+    //     history.push(`${routes.home}`);
+    // };
 
-        // chuyen den trang music
+    const handleLogin = (data) => {
+        dispatch(login(data));
         history.push(`${routes.home}`);
+        localStorage.setItem('name', data.username);
+        localStorage.setItem('pass', data.password);
     };
 
-    const handleUsername = (e) => {
-        localStorage.setItem('name', e.target.value);
-    };
+    // const handleUsername = (e) => {
+    //     localStorage.setItem('name', e.target.value);
+    // };
 
-    const handlePass = (e) => {
-        localStorage.setItem('pass', e.target.value);
-    };
+    // const handlePass = (e) => {
+    //     localStorage.setItem('pass', e.target.value);
+    // };
 
     return (
         <div className={cx('wrapper')}>
@@ -53,36 +67,48 @@ function ModalLogin() {
                             <Link to={routes.home}>X</Link>
                         </span>
                         <h2 className={cx('box__title')}>Log In</h2>
-                        <form className={cx('form')} action="" onSubmit={handleLogin}>
+                        <form className={cx('form')} action="" onSubmit={handleSubmit(handleLogin)}>
                             <div className={cx('form__input')}>
                                 <span className={cx('form__input__text')}>Username</span>
                                 <input
                                     className={cx('form__input__userpass')}
                                     type="text"
-                                    required
-                                    name=""
-                                    value={username}
+                                    // required
+                                    name="username"
+                                    // value={username}
                                     placeholder="username..."
-                                    onChange={(e) => {
-                                        setUsername(e.target.value);
-                                        handleUsername(e);
-                                    }}
+                                    defaultValue={username}
+                                    {...register('username', { required: true, minLength: 3 })}
+                                    // onChange={(e) => {
+                                    //     setUsername(e.target.value);
+                                    //     handleUsername(e);
+                                    // }}
                                 />
+                                <div className={cx('form__input__errors')}>
+                                    {errors.username?.type === 'required' && <li>Name không được để trống</li>}
+                                    {errors.username?.type === 'minLength' && <li>Name phải trên 3 ký tự</li>}
+                                </div>
                             </div>
                             <div className={cx('form__input')}>
                                 <span className={cx('form__input__text')}>Password</span>
                                 <input
                                     className={cx('form__input__userpass')}
                                     type="password"
-                                    required
-                                    name=""
-                                    value={password}
+                                    name="password"
+                                    // required
+                                    // value={password}
                                     placeholder="password..."
-                                    onChange={(e) => {
-                                        setPassword(e.target.value);
-                                        handlePass(e);
-                                    }}
+                                    defaultValue={password}
+                                    {...register('password', { required: true, minLength: 3 })}
+                                    // onChange={(e) => {
+                                    //     setPassword(e.target.value);
+                                    //     handlePass(e);
+                                    // }}
                                 />
+                                <div className={cx('form__input__errors')}>
+                                    {errors.password?.type === 'required' && <li>Name không được để trống</li>}
+                                    {errors.password?.type === 'minLength' && <li>Name phải trên 3 ký tự</li>}
+                                </div>
                             </div>
                             <div className={cx('form__remember')}>
                                 <label>
@@ -90,7 +116,11 @@ function ModalLogin() {
                                 </label>
                             </div>
                             <div className={cx('form__input')}>
-                                <input className={cx('form__input__userpass')} type="submit" value="Log In" />
+                                <input
+                                    className={cx('form__input__userpass')}
+                                    type="submit"
+                                    // value="Log In"
+                                />
                             </div>
                             <div className={cx('form__input')}>
                                 <p className={cx('form__input__register')}>

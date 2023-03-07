@@ -28,6 +28,11 @@
         border: 1px solid #ccc;
         outline: none;
     }
+
+    &__errors {
+        margin-bottom: 12px;
+        color: var(--primary-color);
+    }
 }
 
 .btn-upload {

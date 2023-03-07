@@ -75,6 +75,11 @@
     &__register {
         color: #607d8b;
     }
+
+    &__errors {
+        margin-bottom: 12px;
+        color: var(--primary-color);
+    }
 }
 
 .form__input__userpass[type='submit'] {

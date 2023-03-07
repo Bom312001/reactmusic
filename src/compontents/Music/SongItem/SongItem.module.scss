@@ -69,20 +69,19 @@
 }
 
 .song__option:hover .song__box {
-    display: block;
+    display: inline-flex;
+    flex-direction: column;
 }
 
 .song__box {
     display: none;
     position: absolute;
     // background-color: #999;
-    top: -40px;
-    right: -131px;
+    top: -63px;
+    right: -151px;
     padding: 52px;
     padding-left: 40px;
     border-radius: 2px;
-    // display: flex;
-    // flex-direction: column;
 
     &__item {
         background-color: #999;
@@ -95,9 +94,9 @@
         cursor: pointer;
     }
 
-    // &__item:nth-child(2) {
-    //     margin-top: 12px;
-    // }
+    &__item:nth-child(2) {
+        margin-top: 12px;
+    }
 }
 
 .icon-option {
